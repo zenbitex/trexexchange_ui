@@ -7,7 +7,7 @@
 3. bundle Install
 4. Search for 'cryptodealexchange.in' in the repository (use the search bar above) and make sure you replace all instances of it with your application URL (will be moving to ENV variables soon)
 
- ##`Use This Command:`
+ `Use This Command:`
  `find ./ -type f -exec sed -i -e 's/cryptodealexchange.in/yourdomain.com/g' {} \;`
 
 5. For production, you can do rake assets:precompile RAILS_ENV=production
