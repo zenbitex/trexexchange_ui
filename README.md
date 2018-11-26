@@ -10,8 +10,9 @@
  `Use This Command:`
  `find ./ -type f -exec sed -i -e 's/cryptodealexchange.in/yourdomain.com/g' {} \;`
 
-5. For production, you can do rake assets:precompile RAILS_ENV=production
-6. bundle exec rails server -p 4000
+5. chmod +x bin/*
+6 For production, you can do rake assets:precompile RAILS_ENV=production
+7. bundle exec rails server -p 4000
 
 View a working version of this UI at https://cryptodealexchange.in/trading/ethbtc
 
