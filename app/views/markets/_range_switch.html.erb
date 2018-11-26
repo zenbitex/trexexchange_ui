@@ -1,0 +1,26 @@
+<div id="range_switch" class="select-menu-container" data-x="60">
+  <div class="select-menu invisible--mobile">
+    <% %w(1 5 15 30 | 60 120 240 360 720 | 1440 4320 | 10080).each do |x| %>
+      <li class="text-center select-menu__item" style="list-style-type: none;">
+        <% if x == '|' %>
+          <span class="select-menu__item"> | </span>
+        <% else %>
+          <a class="select-menu__item" href="#" data-x="<%= x %>"><%= t(".switch_#{x}") %></a>
+        <% end %>
+      </li>
+    <% end %>
+    
+  </div>
+  <div class="select-dropdown-menu invisible--tablet invisible--desktop">
+    <div onclick="toggleShow('chart-period')" class="select-dropdown-menu__info">1d</div>
+    <div id="chart-period-dropdown-id" class="select-dropdown-menu__list">
+      <% %w(1 5 15 30 | 60 120 240 360 720 | 1440 4320 | 10080).each do |x| %>
+        <% if x == '|' %>
+          <span class="select-dropdown-menu__list-item"> | </span>
+        <% else %>
+          <a class="select-dropdown-menu__list-item" href="#" data-x="<%= x %>"><%= t(".switch_#{x}") %></a>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

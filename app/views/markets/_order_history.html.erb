@@ -1,0 +1,44 @@
+<!--<div id="my_orders_wrapper" class="has-left-dropdown">
+  <div class="dropdown-wrapper">
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to t('.clear_bids_html'), "/markets/#{@data.fetch(:current_market).fetch(:id)}/order_bids/clear", remote: true, method: :post, data: {confirm: t('.confirm_clear_bids')} %>
+      </li>
+      <li>
+        <%= link_to t('.clear_asks_html'), "/markets/#{@data.fetch(:current_market).fetch(:id)}/order_asks/clear", remote: true, method: :post, data: {confirm: t('.confirm_clear_asks')} %>
+      </li>
+      <li>
+        <%= link_to t('.clear_all_html'),  "/markets/#{@data.fetch(:current_market).fetch(:id)}/orders/clear", remote: true, method: :post, data: {confirm: t('.confirm_clear_all')} %>
+      </li>
+    </ul>
+  </div>
+  <div id="my_orders" class="panel panel-default">
+    <div class="panel-body panel-body-content">
+      <div class="empty-row">
+        <%= t('.no_open_orders') %>
+      </div>
+      <table class="table table-hover">
+        <tbody></tbody>
+      </table>
+    </div>
+    <%= render partial: 'mask' %>
+  </div>
+</div>
+-->
+<div class="form exchange__order-history">
+  <div class="form__header">
+    <h2 class="title">Order History</h2>
+  </div>
+  <div class="form__body order-history__body" style="min-height:208px;">
+    <div class="form__column-container order-history__column-container">
+      <div class="form__column order-history__column">Size</div>
+      <div id="price_" class="form__column order-history__column">Price (USD)</div>
+      <div class="form__column order-history__column">Time</div>
+    </div>
+    <div id="my_orders" class="order-history__order-form-container" style="min-height:175px;">
+      <table class="table table-hover" style="width:100%;border-spacing:0px;">
+        <tbody style="width:100%;"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

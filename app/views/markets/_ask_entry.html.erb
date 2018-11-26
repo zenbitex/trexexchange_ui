@@ -1,0 +1,53 @@
+<div class="buy-sell__body" id="sell-id">
+  <div id="ask_entry" class="panel panel-default entry-left">
+    <div class="buy-sell__radio-button-container">
+      <label class="radio-container buy-sell__radion-button">Limit
+      <input type="radio" checked="checked" name="sell-radio"/><span class="checkmark"></span>
+      </label>
+      <label class="radio-container">Market
+      <input type="radio" name="sell-radio"/><span class="checkmark"></span>
+      </label>
+    </div>
+    <div class="panel-body">
+      <%= form_for 'order_ask', url: "/markets/#{market.fetch(:id)}/order_asks", remote: true, html: { class: 'new_order_ask', id: 'new_order_ask' } do |f| %>
+        <%= f.hidden_field :ord_type, value: 'limit' %>
+
+        <div class="buy-sell__input-block-container">
+          <div class="input-block input-block--half">
+              <p class="input-block__title">Price</p>
+              <div class="input-block__field">
+                  <%= f.text_field :price, class: 'input-block__input' %>
+                  <p class="input-block__post-mark"><%= market.fetch(:bid_unit).upcase %></p>
+              </div>
+          </div>
+          <div class="input-block input-block--half">
+              <div class="input-block__title">Amount</div>
+              <div class="input-block__field">
+                  <%= f.text_field :origin_volume, class: 'input-block__input', placeholder: '0.00' %>
+                  <p class="input-block__post-mark"><%= market.fetch(:ask_unit).upcase %></p>
+              </div>
+          </div>
+        </div>
+        <div class="buy-sell__btn-block">
+            <div class="buy-sell__btn-block-header">
+                <div class="buy-sell__btn-title">Total</div>
+                <p class="buy-sell__btn-mark">
+                  <%= f.text_field :total, class: '', style:'border: none;background: none;' %>
+                  <span class="buy-sell__btn-mark--extra"><%= market.fetch(:bid_unit).upcase %></span>
+                </p>
+            </div>
+            <%= render partial: 'balance', locals: { currency: market.fetch(:ask_unit).upcase } %>
+
+            <button class="buy-sell__btn btn btn--blue" type="submit">
+              <%= t('.action', currency: market.fetch(:ask_unit).upcase) %>
+            </button>
+        </div>
+        
+      <% end %>
+    </div>
+    <!-- <%= render partial: 'mask' %> -->
+  </div>
+</div>
+<!--
+
+ -->

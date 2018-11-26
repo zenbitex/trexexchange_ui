@@ -1,0 +1,390 @@
+<!-- <header class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="container-fluid">
+  <ul id="menu" class="nav navbar-nav navbar-left">
+    <a class="navbar-brand" href="/">
+      <%= ENV.fetch('TITLE') %>
+      
+    </a>
+
+    <p class="navbar-text">
+      <span data-title="<%= t('.vol') %>">
+        <span class="vol"></span>
+      </span>
+      <span data-title="<%= t('.high') %>">
+        <span class="high"></span>
+      </span>
+      <span data-title="<%= t('.low') %>">
+        <span class="low"></span>
+      </span>
+      <span data-title="<%= t('.change') %>">
+        <span class="change"></span>
+      </span>
+    </p>
+  </ul>
+
+  <ul class="nav navbar-nav navbar-right">
+    <% if @data[:current_member] %>
+      <%= render partial: 'account_summary' %>
+      <%= render partial: 'settings' %>
+    <% else %>
+      <p class="navbar-text">
+        <%= t('markets.mask.warning').html_safe %>
+      </p>
+    <% end %>
+    <%= render partial: 'language' %>
+  </ul>
+</div>
+</header> -->
+  <div id="header" class="header">
+    <div class="header__container">
+      <a href="/" id="header-logo-id" class="icon icon-logo--light"></a>
+      <div class="header__manage-block">
+        <% if @data[:current_member] %>
+            <section id="header-manage-section-id" class="header__manage-block">
+                <div class="select-menu-container">
+                    <div class="select-menu invisible--mobile">
+                        <div id="header-block-trade-id"
+                                class="header__select-item select-menu__item select-menu__item--capitalize select-menu__item--active"
+                                onclick="selectBlock('trade')">Trade
+                        </div>
+                        <div id="header-block-wallet-id" class="header__select-item select-menu__item select-menu__item--capitalize">
+                            <a href="/funds">Wallet</a>
+                        </div>
+                        <div id="header-block-history-id" class="header__select-item select-menu__item select-menu__item--capitalize">
+                            <a href="/history/orders">History</a>
+                        </div>
+                    </div>
+                    <div class="select-dropdown-menu invisible--tablet invisible--desktop">
+                        <div onclick="toggleShow('header-block')" class="select-dropdown-menu__info">Trade</div>
+                        <div id="header-block-dropdown-id" class="select-dropdown-menu__list">
+                            <div id="header-block-mobile-trade-id"
+                                    class="select-dropdown-menu__list-item select-dropdown-menu__list-item--capitalize"
+                                    onclick="selectBlock('trade')">Trade
+                            </div>
+                            <div id="header-block-mobile-wallet-id"
+                                    class="select-dropdown-menu__list-item select-dropdown-menu__list-item--capitalize"
+                                    onclick="selectBlock('wallet')">
+                            <a href="/funds">Wallet</a>
+                            </div>
+                            <div id="header-block-mobile-history-id"
+                                    class="select-dropdown-menu__list-item select-dropdown-menu__list-item--capitalize"
+                                    onclick="selectBlock('history')">
+                            <a href="/funds">History</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="header__delimiter">
+            </section>
+        <% else %>
+            <section id="header-login-section-id" class="header__manage-block">
+                <a class="btn header__btn header__btn--signUp" href="/">Sign Up</a>
+                <a class="btn btn--blue header__btn header__btn--login" href="/">Login</a>
+            </section>
+        <% end %>
+        
+        
+         <i id="header-theme-icon-id" onclick="changeTheme()" class="pointer icon header__mode-icon icon--night-mode"></i> 
+      </div>
+    </div>
+  </div>
+
+  <!--login component-->
+  <div id="login-popup-id" class="popup__module invisible">
+    <div class="popup__form">
+      <div class="popup__header">
+        <p class="popup__banner">Login</p>
+        <i class="icon icon-close popup__close-icon" onclick="showComponent('login')"></i>
+      </div>
+      <div class="popup__body">
+        <form class="simple_form form-horizontal" novalidate="novalidate" id="new_identity" action="/auth/identity/callback" accept-charset="UTF-8" method="post">
+            <input name="utf8" type="hidden" value="✓">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="input-block input-block--light popup__row">
+                <div class="input-block__title input-block__title--big">Email Address</div>
+                <div class="input-block__field popup__input-field">
+                    <input name="auth_key" autofocus="autofocus" class="input-block__input string email required form-control" placeholder="E-mail Address" type="email" id="identity_email">
+                </div>
+            </div>
+            <div class="input-block input-block--light popup__row">
+                <div class="input-block__title input-block__title--big">Password</div>
+                <div class="input-block__field popup__input-field">
+                    <input name="password" class="password required form-control input-block__input" placeholder="••••••••••••••••" type="password" id="identity_password">
+                </div>
+            </div>
+
+            <div class="login__settings-row">
+                <label class="checkbox-container">
+                    Remember Me
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p class="login__forgot-pass" onclick="forgetPassword()">Forgot Password</p>
+            </div>
+
+            <div class="popup__btn-container sign-up__manage-row">
+                <input type="submit" name="commit" value="Login" cancel="/" class="btn btn--blue popup__btn sign-up__btn" data-loading-text="Creating...">
+            </div>
+        </form>
+        
+
+        
+      </div>
+    </div>
+  </div>
+  <!--End of login component-->
+
+  <!--Sign Up component-->
+  <div id="signup-popup-id" class="popup__module invisible">
+    <div id="signUp-email-not-sent-id" class="popup__form">
+      <div class="popup__header">
+        <p class="popup__banner">Sign Up</p>
+        <i class="icon icon-close popup__close-icon" onclick="showComponent('signUp')"></i>
+      </div>
+      <div class="popup__body">
+        <form class="simple_form form-horizontal" novalidate="novalidate" id="new_identity" action="/auth/identity/register" accept-charset="UTF-8" method="post">
+            <input name="utf8" type="hidden" value="✓">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="input-block input-block--light popup__row">
+            <div class="input-block__title input-block__title--big">Email Address</div>
+            <div class="input-block__field popup__input-field">
+                <input name="email" autofocus="autofocus" class="string email required form-control input-block__input" type="email" id="identity_email">
+            </div>
+            </div>
+
+            <div class="input-block input-block--light popup__row">
+            <div class="input-block__title input-block__title--big">Password</div>
+            <div class="input-block__field popup__input-field">
+                <input name="password" class="password required form-control input-block__input" type="password" id="identity_password">
+            </div>
+            </div>
+
+            <div class="input-block input-block--light popup__row">
+            <div class="input-block__title input-block__title--big">Confirm Password</div>
+            <div class="input-block__field popup__input-field">
+                <input name="password_confirmation" class="password required form-control input-block__input" type="password" id="identity_password_confirmation">
+            </div>
+            </div>
+
+            <label class="checkbox-container sign-up__checkbox-container">
+            I agree to Cryptodeal's
+            <a href="" class="checkbox-container__text--bold">Terms of Service</a> and
+            <a href="" class="checkbox-container__text--bold">Privacy Policy</a>
+            <input type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+            </label>
+
+            <div class="popup__btn-container sign-up__manage-row">
+            <button class="btn btn--dark popup__btn sign-up__btn" onclick="signUpToLogin()">Login</button>
+            <!-- <button class="btn btn--blue popup__btn sign-up__btn" onclick="onSignUp('signUp')">Sign Up</button> -->
+            <input type="submit" name="commit" value="Sign Up" cancel="/" class="btn btn--blue popup__btn sign-up__btn" data-loading-text="Creating...">
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="signUp-email-sent-id" class="popup__form invisible">
+      <div class="popup__header">
+        <p class="popup__banner">Email Verification Sent</p>
+        <i class="icon icon-close popup__close-icon" onclick="showComponent('signUp')"></i>
+      </div>
+      <div class="popup__body">
+        <p class="popup__text">
+          An account email verification has been sent.  Follow the directions in the email to finish creating your account.
+        </p>
+
+        <div class="popup__btn-container sign-up__manage-row">
+          <button class="btn btn--blue popup__btn sign-up__btn" onclick="showComponent('signUp')">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End of Sign Up component-->
+
+  <!--Forget Password Component-->
+  <div id="forgetPassword-popup-id" class="popup__module invisible">
+    <div id="forgetPassword-email-not-sent-id" class="popup__form">
+      <div class="popup__header">
+        <p class="popup__banner">Forgot Password</p>
+        <i class="icon icon-close popup__close-icon" onclick="showComponent('forgetPassword')"></i>
+      </div>
+      <div class="popup__body">
+        <div class="input-block input-block--light popup__row">
+          <div class="input-block__title input-block__title--big">Email Address</div>
+          <div class="input-block__field popup__input-field">
+            <input placeholder="johndoe@gmail.com" class="input-block__input" type="text"/>
+          </div>
+        </div>
+
+        <div class="popup__btn-container sign-up__manage-row">
+          <button class="btn btn--blue popup__btn sign-up__btn" onclick="onForgetPassword()">Reset Password</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="forgetPassword-email-sent-id" class="popup__form invisible">
+      <div class="popup__header">
+        <p class="popup__banner">Password Reset Email Sent</p>
+        <i class="icon icon-close popup__close-icon" onclick="showComponent('forgetPassword')"></i>
+      </div>
+      <div class="popup__body">
+        <p class="popup__text">
+          A password reset email has been sent. Follow the directions in the email to reset your password.
+        </p>
+
+        <div class="popup__btn-container sign-up__manage-row">
+          <button class="btn btn--blue popup__btn sign-up__btn" onclick="showComponent('forgetPassword')">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End Of forget password component-->
+
+  <!--Reset Password Component-->
+  <div id="resetPassword-popup-id" class="popup__module invisible">
+    <div class="popup__form">
+      <div class="popup__header">
+        <p class="popup__banner">Reset Password</p>
+        <i class="icon icon-close popup__close-icon" onclick="showComponent('resetPassword')"></i>
+      </div>
+      <div class="popup__body">
+        <div class="input-block input-block--light popup__row input-block--error">
+          <div class="input-block__title input-block__title--big">Password</div>
+          <div class="input-block__field popup__input-field">
+            <input placeholder="••••••••••••••••" class="input-block__input" type="password"/>
+          </div>
+        </div>
+
+        <div class="input-block input-block--light popup__row input-block--error">
+          <div class="input-block__title input-block__title--big">Re-type Password</div>
+          <div class="input-block__field popup__input-field">
+            <input placeholder="••••••••••••••••" class="input-block__input" type="password"/>
+          </div>
+          <p class="input-block__error-message">Passwords must match.</p>
+        </div>
+
+        <div class="popup__btn-container">
+          <button class="btn btn--blue popup__btn sign-up__btn" onclick="showComponent('resetPassword')">Reset Password</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End Of reset password component-->
+
+  <!--Identity component-->
+  <div id="identity-popup-id" class="popup__module invisible">
+    <div class="popup__form">
+      <div class="popup__header">
+        <p class="popup__banner">Enter Identity Details</p>
+        <i class="icon icon-close popup__close-icon" onclick="showComponent('identity')"></i>
+      </div>
+      <div class="popup__body">
+        <div class="identity__row">
+          <div class="input-block input-block--light identity__block--firstname">
+            <div class="input-block__title input-block__title--big">First Name</div>
+            <div class="input-block__field popup__input-field">
+              <input placeholder="John" class="input-block__input" type="text"/>
+            </div>
+          </div>
+
+          <div class="input-block input-block--light identity__block--lastname">
+            <div class="input-block__title input-block__title--big">Last Name</div>
+            <div class="input-block__field popup__input-field">
+              <input placeholder="Doe" class="input-block__input" type="password"/>
+            </div>
+          </div>
+        </div>
+
+        <hr class="identity__delimiter">
+
+        <div class="identity__row">
+          <div class="input-block input-block--light identity__block--month">
+            <div class="input-block__title input-block__title--big">Date of Birth</div>
+            <div class="input-block__field popup__input-field">
+              <!--<custom-dropdown-component-->
+                      <!--items="vm.monthList"-->
+                      <!--current-value="vm.model.birthday.month"-->
+                      <!--placeholder="'Month'">-->
+              <!--</custom-dropdown-component>-->
+            </div>
+          </div>
+
+          <div class="input-block input-block--light identity__block--date">
+            <div class="input-block__title input-block__title--big"></div>
+            <div class="input-block__field popup__input-field">
+              <input placeholder="Date" class="input-block__input" type="text"/>
+            </div>
+          </div>
+
+          <div class="input-block input-block--light identity__block--year">
+            <div class="input-block__title input-block__title--big"></div>
+            <div class="input-block__field popup__input-field">
+              <!--<custom-dropdown-component-->
+                      <!--items="vm.yearList"-->
+                      <!--current-value="vm.model.birthday.year"-->
+                      <!--placeholder="'Year'">-->
+              <!--</custom-dropdown-component>-->
+            </div>
+          </div>
+        </div>
+
+        <hr class="identity__delimiter">
+
+        <div class="identity__row">
+          <div class="input-block input-block--light identity__block--street">
+            <div class="input-block__title input-block__title--big">Street Address</div>
+            <div class="input-block__field popup__input-field">
+              <input placeholder="Street" class="input-block__input" type="text"/>
+            </div>
+          </div>
+
+          <div class="input-block input-block--light identity__block--city">
+            <div class="input-block__title input-block__title--big">City</div>
+            <div class="input-block__field popup__input-field">
+              <input placeholder="City" class="input-block__input" type="text"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="identity__row">
+          <div class="input-block input-block--light identity__block--country">
+            <div class="input-block__title input-block__title--big">Country</div>
+            <div class="input-block__field popup__input-field">
+              <!--<custom-dropdown-component-->
+                      <!--items="vm.countryList"-->
+                      <!--current-value="vm.model.address.country"-->
+                      <!--placeholder="'Country'"-->
+                      <!--on-select-item="vm.selectCountry(index, item)">-->
+              <!--</custom-dropdown-component>-->
+            </div>
+          </div>
+
+          <div class="input-block input-block--light identity__block--state">
+            <div class="input-block__title input-block__title--big">State</div>
+            <div class="input-block__field popup__input-field">
+              <!--<custom-dropdown-component-->
+                      <!--items="vm.stateList"-->
+                      <!--current-value="vm.model.address.state"-->
+                      <!--placeholder="'State'">-->
+              <!--</custom-dropdown-component>-->
+            </div>
+          </div>
+
+          <div class="input-block input-block--light identity__block--postal-code">
+            <div class="input-block__title input-block__title--big">Postal Code</div>
+            <div class="input-block__field popup__input-field">
+              <input placeholder="Postal Code" class="input-block__input" type="text"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup__btn-container sign-up__manage-row">
+          <button class="btn btn--blue popup__btn sign-up__btn" onclick="showComponent('identity')">Save and Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End Of identity component-->
+
+  

@@ -1,0 +1,29 @@
+
+<div class="form exchange__order-book">
+  <div class="form__header">
+    <h2 class="title">Order Book</h2>
+  </div>
+  <%= render partial: 'ticker' %>
+  <div id="order_book" class="form__body order-book__body" style="min-height: 440px;">
+    <div class="order_book_header" style="width:50%; border-right:1px solid #151d2b">
+      <div class="form__column-container order-book__column-container" >
+        <div class="form__column order-book__column">Amount (<%= @data.fetch(:current_market).fetch(:bid_unit) %>)</div>
+        <div class="form__column order-book__column">Volume (<%= @data.fetch(:current_market).fetch(:ask_unit) %>)</div>
+        <div class="form__column order-book__column">Bid (<%= @data.fetch(:current_market).fetch(:bid_unit) %>)</div>
+      </div>
+      <div class="order-book__order-form-container">
+        <div class="order-book-bid bids"></div>
+      </div>
+    </div>
+    <div class="order_book_header" style="width:49%;">
+      <div class="form__column-container order-book__column-container">
+        <div class="form__column order-book__column">Ask (<%= @data.fetch(:current_market).fetch(:bid_unit) %>)</div>
+        <div class="form__column order-book__column">Volume (<%= @data.fetch(:current_market).fetch(:ask_unit) %>)</div>
+        <div class="form__column order-book__column">Amount (<%= @data.fetch(:current_market).fetch(:bid_unit) %>)</div>
+      </div>
+      <div class="order-book__order-form-container">
+        <div class="order-book-ask asks">
+      </div>
+    </div>
+  </div>
+</div>
