@@ -9,11 +9,11 @@
  ## Use This Command:
  `find ./ -type f -exec sed -i -e 's/cryptodealexchange.in/yourdomain.com/g' {} \;`
 
-5. chmod +x bin/*
-6. bin/setup
-7. bin/init_config
-8. bundle exec rake assets:precompile
-9. bundle exec rails server -p 4000
+5. `chmod +x bin/*`
+6. `bin/setup`
+7. `bin/init_config`
+8. `bundle exec rake assets:precompile`
+9. `bundle exec rails server -p 4000`
 
 View a working version of this UI at https://cryptodealexchange.in/trading/ethbtc
 
