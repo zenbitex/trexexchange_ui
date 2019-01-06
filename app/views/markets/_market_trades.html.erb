@@ -1,72 +1,20 @@
-<!--<div  class="has-right-dropdown">
-  <div class="dropdown-wrapper">
-    <ul class="dropdown-menu">
-      <li>
-        <a class="all active" href="#"><%= t('.all_html') %></a>
-      </li>
-      <li>
-        <a class="my" href="#"><%= t('.my_html') %></a>
-      </li>
-    </ul>
-  </div>
-  <div id="market_trades">
-    <div class="panel panel-default">
-      <div class="panel-body panel-body-head">
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="at col-xs-5 text-left"><%= "#{t('.time')}" %></th>
-              <th class="my col-xs-1 text-left"></th>
-              <th class="price col-xs-5 text-right"><%= "#{t('.price')}" %></th>
-              <th class="volume col-xs-5 text-right"><%= "#{t('.volume')}" %></th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      <div class="panel-body panel-body-content">
-        <table class="table table-hover all-trades">
-          <tbody></tbody>
-        </table>
-        <table class="table table-hover my-trades">
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>-->
+
 <div id="market_trades_wrapper" class="form exchange__order-list">
   <div class="form__header order-list__header">
-    <h2 class="title">Orders</h2>
-    <!--Select menu-->
-    <!-- <div class="select-menu-container">
-      <div class="select-menu invisible--mobile">
-        <div class="select-menu__item select-menu__item--active" onclick="selectDropdownItem('order-type',this)">Buy</div>
-        <div class="select-menu__item" onclick="selectDropdownItem('order-type',this)">Sell</div>
-      </div>
-      <div class="select-dropdown-menu invisible--tablet invisible--desktop">
-        <div onclick="toggleShow('order-type')" class="select-dropdown-menu__info">Buy</div>
-        <div id="order-type-dropdown-id" class="select-dropdown-menu__list">
-          <div onclick="selectDropdownItem('order-type')" class="select-dropdown-menu__list-item">Buy</div>
-          <div onclick="selectDropdownItem('order-type')" class="select-dropdown-menu__list-item">Sell</div>
-        </div>
-      </div>
-    </div> -->
+    <h2 class="title">Market History</h2>
   </div>
   <div id="market_trades" class="form__body order-list__body">
     <div class="form__column-container order-list__column-container">
       <div class="form__column order-list__column">Size</div>
-      <div class="form__column order-list__column">Filled</div>
+      <div class="form__column order-list__columntype">Filled</div>
       <div class="form__column order-list__column">Price (<%= @data.fetch(:current_market).fetch(:bid_unit) %>)</div>
-      <div class="form__column order-list__column">Fee</div>
+      <div class="form__column order-list__columnfee">Fee</div>
       <div class="form__column order-list__column">Time</div>
     </div>
     <div class="order-list__order-form-container">
       <table class="table table-hover all-trades" style="width:100%;border-spacing:0px;">
         <tbody></tbody>
       </table>
-      <!-- <table class="table table-hover my-trades" style="width:100%;border-spacing:0px;">
-        <tbody></tbody>
-      </table> -->
     </div>
   </div>
 </div>
