@@ -186,7 +186,11 @@ h7 {
   background: var(--btnBackgroundStandart);
 }
 .btn--blue {
-  background: #0134ff;
+  background: green;
+  color: #fff;
+}
+.btn--red {
+  background: red;
   color: #fff;
 }
 .btn--dark {

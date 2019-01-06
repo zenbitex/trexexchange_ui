@@ -7,7 +7,7 @@
       <label class="radio-container">Market
       <input type="radio" name="sell-radio"/><span class="checkmark"></span>
       </label>
-    </div>
+    </div> 
     <div class="panel-body">
       <%= form_for 'order_ask', url: "/markets/#{market.fetch(:id)}/order_asks", remote: true, html: { class: 'new_order_ask', id: 'new_order_ask' } do |f| %>
         <%= f.hidden_field :ord_type, value: 'limit' %>
@@ -38,7 +38,7 @@
             </div>
             <%= render partial: 'balance', locals: { currency: market.fetch(:ask_unit).upcase } %>
 
-            <button class="buy-sell__btn btn btn--blue" type="submit">
+            <button class="buy-sell__btn btn btn--red" type="submit">
               <%= t('.action', currency: market.fetch(:ask_unit).upcase) %>
             </button>
         </div>
@@ -48,6 +48,3 @@
     <!-- <%= render partial: 'mask' %> -->
   </div>
 </div>
-<!--
-
- -->
