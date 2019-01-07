@@ -109,14 +109,7 @@
   <div class="side side--right">
     <!--Order book-->
     <%= render partial: 'order_book' %>
-    
     <!--End Of Order book-->
-
-    <!--Order history-->
-    <%= render partial: 'order_history' %>
-    
-    <!--End of order history-->
-
     <!--Buy Sell-->
     <div class="form exchange__buy-sell">
       <div class="form__header">
@@ -134,19 +127,8 @@
           </div>
       </div>
     </div>
-          <!--
-          <div class="select-menu invisible--mobile">
-            <div id="buy-button" class="select-menu__item" onclick="selectDropdownItem('buy-sell',this)">Buy</div>
-            <div class="select-menu__item select-menu__item--active" onclick="selectDropdownItem('buy-sell', this)">Sell</div>
-          </div>
-          <div class="select-dropdown-menu invisible--tablet invisible--desktop">
-            <div onclick="toggleShow('buy-sell')" class="select-dropdown-menu__info">Buy</div>
-            <div id="buy-sell-dropdown-id" class="select-dropdown-menu__list">
-              <div onclick="selectDropdownItem('buy-sell', this)" class="select-dropdown-menu__list-item">Buy</div>
-              <div onclick="selectDropdownItem('buy-sell', this)" class="select-dropdown-menu__list-item">Sell</div>
-            </div>
-          </div>
-        </div>
-      </div>-->
+        <!--Order history-->
+    <%= render partial: 'order_history' %>
+    <!--End of order history-->
   </div>
 </div>
