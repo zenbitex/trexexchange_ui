@@ -1,18 +1,19 @@
 <% trend = formatter.trend(type) %>
 
 <tr id="market-trade-<%= tid %>" class="<%= classes %> form__column-container form__column-container-value" style="width:100%;">
-  <td class="form__column-value order-list__column order-list__column-value"><div>
+  <td class="form__column-value order-list__column order-list__column-value"><div class="text--green">
     <%= formatter.mask_fixed_volume(amount) %>
   </div></td>
   <td class="form__column-value type order-list__column-value"><div>
     <%= type %>
   </div></td>
-  <td class="form__column-value order-list__column order-list__column-value"><div>
+  <td class="form__column-value order-list__column order-list__column-value"><div class="text--price">
     <%= formatter.mask_fixed_price(price) %>
   </div></td>
-  <td class="form__column-value fee order-list__column-value" title="<%= formatter.fix_bid(price*amount) %>"><div class=$   <%= formatter.fix_bid(price*amount) %>
+ <td class="form__column-value fee order-list__column-value" title="<%= formatter.fix_bid(price*amount) %>"><div class="text--fee">
+   <%= formatter.fix_bid(price*amount) %>
   </div></td>
-  <td class="form__column-value order-list__column order-list__column-value" title="<%= formatter.fix_bid(price*amount) %>"><div>
+  <td class="form__column-value order-list__column order-list__column-value" title="<%= formatter.fix_bid(price*amount) %>"><div class="text--time">
     <%= formatter.trade_time(date) %>
   </div></td>
 </tr>

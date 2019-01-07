@@ -1,16 +1,16 @@
 <% trade_state = (origin_volume == volume) ? 'new' : 'partial' %>
 
 <div data-id="<%= id %>" data-kind="<%= kind %>" class="order <%= kind %> form__column-container form__column-container-value parent_tr">
-  <div class="form__column order-history__column form__column-value">
+  <div class="form__column order-history__column form__column-value text--green">
       <span><%= formatter.mask_fixed_volume(volume) %></span>
   </div>
-  <div class="form__column order-history__column form__column-value <%= formatter.trend(kind) %>">
+  <div class="form__column order-history__column form__column-value <%= formatter.trend(kind) %> text--price">
     <span><%= formatter.mask_fixed_price(price) %></span>
   </div>
-  <div class="form__column order-history__column form__column-value">
+  <div class="form__column order-history__column form__column-value text--time">
     <span><%= formatter.fulltime(at) %></span>
   </div>
   <div class="form__column order-history__column form__column-value text--red">
-    <span>Cancel</span>
+      <span>Cancel</span>
   </div>
 </div>
