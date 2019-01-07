@@ -1,16 +1,16 @@
 <tr data-order="<%= index %>" data-price="<%= price %>" data-volume="<%= volume %>" class="<%= classes %> form__column-container form__column-container-value">
   <td class="price form__column order-book__column form__column-value">
-    <div class="">      
+    <div class="text--red">      
       <%= formatter.mask_fixed_price(price) %>
     </div>
   </td>
   <td class="volume form__column order-book__column form__column-value">
-    <div class="">
+    <div class="text--redtext--red">
       <%= formatter.mask_fixed_volume(volume) %>
     </div>
   </td>
   <td class="amount form__column order-book__column form__column-value">
-    <div class="">
+    <div class="text--red">
       <%= formatter.amount(volume, price) %>
     </div>
   </td>

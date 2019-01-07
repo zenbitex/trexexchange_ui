@@ -2,6 +2,7 @@
   <div class="buy-sell__wallet-container">
     <div class="order-book__column-wide">
       <p class="order-book__title">
+        Ask
         <span class="bid price"></span>
         <span class="trading-product__title--extra trading-product__extra-info"><%= @data.fetch(:current_market).fetch(:bid_unit) %></span>
       </p>
@@ -11,6 +12,7 @@
     </div>
     <div class="order-book__column-wide">
       <p class="order-book__title">
+        Bid
         <span class="ask price"></span>
         <span class="trading-product__title--extra trading-product__extra-info"><%= @data.fetch(:current_market).fetch(:bid_unit) %></span>
       </p>
