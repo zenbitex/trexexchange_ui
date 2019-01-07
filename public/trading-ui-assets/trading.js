@@ -41,7 +41,7 @@ $('.order-book-bid tr').each(function(){
 x = x + parseFloat(this.dataset.volume)
 });
 $('.order-book-bid tr').each(function(){
-this.style.background = `linear-gradient(to right, rgba(0, 128, 0, 0.75) ${(parseFloat(this.dataset.volume)/x)*100}%, transparent 0)`
+this.style.background = `linear-gradient(to right, rgba(0, 128, 0, 0.25) ${(parseFloat(this.dataset.volume)/x)*100}%, transparent 0)`
 this.style.backgroundColor = 'white';
 });
 
@@ -51,7 +51,7 @@ x = x + parseFloat(this.dataset.volume)
 });
 
 $('.order-book-ask tr').each(function(){
-this.style.background = `linear-gradient(to left, rgba(255,0,0,0.75) ${(parseFloat(this.dataset.volume)/x)*100}%, transparent 0)`
+this.style.background = `linear-gradient(to left, rgba(255,0,0,0.25) ${(parseFloat(this.dataset.volume)/x)*100}%, transparent 0)`
 this.style.backgroundColor = 'white';
 });
 

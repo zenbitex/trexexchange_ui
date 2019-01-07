@@ -4,13 +4,13 @@
   <div class="form__column order-history__column form__column-value">
       <span><%= formatter.mask_fixed_volume(volume) %></span>
   </div>
-  <!--<div class="form__column order-history__column form__column-value text--red red-before">
-      <span><%= formatter.mask_fixed_volume(volume) %></span>
-  </div>-->
   <div class="form__column order-history__column form__column-value <%= formatter.trend(kind) %>">
     <span><%= formatter.mask_fixed_price(price) %></span>
   </div>
   <div class="form__column order-history__column form__column-value">
     <span><%= formatter.fulltime(at) %></span>
+  </div>
+  <div class="form__column order-history__column form__column-value text--red">
+    <span>Cancel</span>
   </div>
 </div>
