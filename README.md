@@ -15,7 +15,19 @@
 8. `bundle exec rake assets:precompile`
 9. `bundle exec rails server -p 4000`
 
-View a working version of this UI at https://cryptodealexchange.in/trading/ethbtc
 
 # To do: 
 ## `Tradingview integration`
+
+
+# This is What you will get:
+- Mobile View
+`Click on Image to Enlarge`
+![N|Solid](https://adarshd711.github.io/1.png)
+![N|Solid](https://adarshd711.github.io/2.png)
+![N|Solid](https://adarshd711.github.io/3.png)
+ - Desktop View
+`Click on Image to Enlarge`
+![N|Solid](https://adarshd711.github.io/4.png)
+`Click on Image to Enlarge`
+![N|Solid](https://adarshd711.github.io/5.png)
