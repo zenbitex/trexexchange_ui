@@ -1091,6 +1091,7 @@ h7 {
 .form {
   background: var(--formBackgroundColor);
   margin-bottom: 8px;
+  margin-top: 8px;
 }
 .form__header {
   background: var(--formBackgroundHeader);
@@ -1657,11 +1658,11 @@ h7 {
 .order-list__column {
   width: 20%;
 }
-.order-list__columnfee {
-  width: 30%;
-}
-.order-list__columntype {
+.type {
   width: 10%;
+}
+.fee {
+  width: 30%;
 }
 .order-list__column-value {
   font-family: "GT-Walsheim-Pro-Regular";

@@ -9,9 +9,10 @@
 <%= render partial: 'header' %>
 <div class="container exchange__container">
   <div class="side side--left">
+    <!--Trading product-->
     <div class="form exchange__trading-form">
       <div class="form__header">
-        <h2 class="title">Markets and Trading</h2>
+        <h2 class="title">Trading Product</h2>
       </div>
       <div class="form__body trading-product">
         <div class="trading-product__column trading-product__column--market">
@@ -28,9 +29,9 @@
               <div class="trading-dropdown__backround"></div>
               <div class="trading-dropdown__main-block">
                 <div class="form__column-container">
-                  <div class="form__column trading-dropdown__column">Pairs</div>
+                  <div class="form__column trading-dropdown__column">Asset</div>
                   <div class="form__column trading-dropdown__column">Last Price</div>
-                  <div class="form__column trading-dropdown__column">% Change</div>
+                  <div class="form__column trading-dropdown__column">Change</div>
                 </div>
                 <div class="trading-dropdown__form-container">
                   <% @data.fetch(:markets).each do |market| %>
@@ -79,7 +80,7 @@
             <p class="trading-product__value">24h Price</p>
           </div>
         </div>
-        <div class="trading-product__column trading-product__column--24h-volume">
+        <div class="trading-product__column picture trading-product__column--24h-volume">
           <div class="trading-product__title-container">
             <% @data.fetch(:markets).each do |market| %>
                 <% if market.fetch(:id) == @data.fetch(:current_market).fetch(:id) %>

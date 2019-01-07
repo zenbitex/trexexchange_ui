@@ -1,13 +1,13 @@
 <div class="buy-sell__body" id="buy-id">  
   <div id="bid_entry" class="panel panel-default entry-right">
-    <div class="buy-sell__radio-button-container">
+    <!--<div class="buy-sell__radio-button-container">
       <label class="radio-container buy-sell__radion-button">Limit
         <input type="radio" checked="checked" name="buy-radio"/><span class="checkmark"></span>
       </label>
       <label class="radio-container">Market
         <input type="radio" name="buy-radio"/><span class="checkmark"></span>
       </label>
-    </div> 
+    </div>-->
     <div class="panel-body">
       <%= form_for 'order_bid', url: "/markets/#{market.fetch(:id)}/order_bids", remote: true, html: { class: 'new_order_bid', id: 'new_order_bid' } do |f| %>
         <%= f.hidden_field :ord_type, value: 'limit' %>
@@ -47,3 +47,30 @@
     <!-- <%= render partial: 'mask' %> -->
   </div>
 </div>
+<!--
+<div class="buy-sell__body invisible" id="buy-id">
+  <div class="buy-sell__radio-button-container">
+    <label class="radio-container buy-sell__radion-button">Limit
+      <input type="radio" checked="checked" name="sell-radio"/><span class="checkmark"></span>
+    </label>
+    <label class="radio-container">Market
+      <input type="radio" name="sell-radio"/><span class="checkmark"></span>
+    </label>
+  </div>
+  <div class="buy-sell__input-block-container">
+    <div class="input-block">
+      <p class="input-block__title">Amount</p>
+      <div class="input-block__field">
+        <input placeholder="0.00" class="input-block__input"/>
+        <p class="input-block__post-mark">BTC</p>
+      </div>
+    </div>
+  </div>
+  <div class="buy-sell__btn-block">
+    <div class="buy-sell__btn-block-header">
+      <div class="buy-sell__btn-title">Total</div>
+      <p class="buy-sell__btn-mark">0.00<span class="buy-sell__btn-mark--extra">USD</span></p>
+    </div>
+    <button class="buy-sell__btn btn btn--blue">Sell</button>
+  </div>
+</div> -->
