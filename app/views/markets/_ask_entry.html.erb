@@ -1,4 +1,4 @@
-<div class="buy-sell__body" id="sell-id">
+<div class="buy-sell__body invisible" id="sell-id">
   <div id="ask_entry" class="panel panel-default entry-left">
     <!--<div class="buy-sell__radio-button-container">
       <label class="radio-container buy-sell__radion-button">Limit
@@ -13,14 +13,14 @@
         <%= f.hidden_field :ord_type, value: 'limit' %>
 
         <div class="buy-sell__input-block-container">
-          <div class="input-block input-block--half">
+          <div class="input-block">
               <p class="input-block__title">Price</p>
               <div class="input-block__field">
                   <%= f.text_field :price, class: 'input-block__input' %>
                   <p class="input-block__post-mark"><%= market.fetch(:bid_unit).upcase %></p>
               </div>
           </div>
-          <div class="input-block input-block--half">
+          <div class="input-block">
               <div class="input-block__title">Amount</div>
               <div class="input-block__field">
                   <%= f.text_field :origin_volume, class: 'input-block__input', placeholder: '0.00' %>
@@ -29,11 +29,11 @@
           </div>
         </div>
         <div class="buy-sell__btn-block">
-            <div class="buy-sell__btn-block-header">
-                <div class="buy-sell__btn-title">Total</div>
-                <p class="buy-sell__btn-mark">
-                  <%= f.text_field :total, class: '', style:'border: none;background: none;' %>
-                  <span class="buy-sell__btn-mark--extra"><%= market.fetch(:bid_unit).upcase %></span>
+            <div class="input-block">
+                <div class="input-block__title">Total</div>
+                <p class="input-block__field">
+                  <%= f.text_field :total, class: 'input-block__input', style:'border: none;background: none;' %>
+                  <span class="input-block__post-mark"><%= market.fetch(:bid_unit).upcase %></span>
                 </p>
             </div>
             <%= render partial: 'balance', locals: { currency: market.fetch(:ask_unit).upcase } %>

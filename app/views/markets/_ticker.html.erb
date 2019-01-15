@@ -1,7 +1,7 @@
 <div id="ticker" class="order-book__settings-row">
   <div class="buy-sell__wallet-container">
     <div class="order-book__column-wide text--blue">
-      <p class="order-book__title"> Ask  
+      <p class="order-book__title text--green"> Bid  
         <span class="bid price"></span>
         <span class="trading-product__title--extra trading-product__extra-info"><%= @data.fetch(:current_market).fetch(:bid_unit) %></span>
       </p>
@@ -10,7 +10,7 @@
         <i class="icon icon-exchange trading-product__icon-exchange"></i>
     </div>
     <div class="order-book__column-wide text--red">
-      <p class="order-book__title"> Bid  
+      <p class="order-book__title text--sell"> Ask  
         <span class="ask price"></span>
         <span class="trading-product__title--extra trading-product__extra-info"><%= @data.fetch(:current_market).fetch(:bid_unit) %></span>
       </p>

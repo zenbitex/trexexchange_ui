@@ -4,7 +4,7 @@
   </div>
   <div id="market_trades" class="form__body order-list__body">
     <div class="form__column-container order-list__column-container">
-      <div class="form__column order-list__column">Quantity (<%= @data.fetch(:current_market).fetch(:ask_unit) %>)</div>
+      <div class="form__column order-list__column">Volume (<%= @data.fetch(:current_market).fetch(:ask_unit) %>)</div>
       <div class="form__column type">Type</div>
       <div class="form__column order-list__column">Price (<%= @data.fetch(:current_market).fetch(:bid_unit) %>)</div>
       <div class="form__column fee">Total (<%= @data.fetch(:current_market).fetch(:bid_unit) %>)</div>

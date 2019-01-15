@@ -1,4 +1,4 @@
-var currentTheme = 'theme--dark';
+var currentTheme = 'theme--light';
 var isLoggedIn = true;
 var isShow = {
     signUp: false,
@@ -239,3 +239,4 @@ function selectBlock (what) {
             break;
     }
 }
+window.onload = changeTheme();

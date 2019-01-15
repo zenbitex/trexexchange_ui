@@ -5,40 +5,9 @@
 <audio preload="preload" id="warning-fx">
   <source src="<%= audio_path('warning.mp3') %>" />
 </audio>
-<style>
-.trading-dropdown__row {
-  display: none;
-}
-.show {
-  display: flex;
-}
-.btns {
-    width: 15.5%;
-    font-family: "Karla-Bold";
-    font-weight: normal;
-    font-size: 12px;
-    color: #27354e;
-    letter-spacing: 0.1px;
-    align-items: center;
-    justify-content: center;
-    padding: 9px 12px;
-    border: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    background: var(--btnBackgroundStandart);
-}
-.btns:hover {
-  background-color: #ddd;
 
-}
-.btns.active {
-    position: relative;
-    background-color: #666;
-    color: white;
-}
-</style>
 <%= render partial: 'header' %>
-<div class="container exchange__container" onload="changeTheme();">
+<div class="container exchange__container">
   <div class="side side--left">
     <!--Trading product-->
     <div class="form exchange__trading-form">
@@ -46,7 +15,7 @@
         <h2 class="title">Markets and Trading</h2>
       </div>
       <div class="form__body trading-product">
-        <div class="trading-product__column trading-product__column--market ">
+        <div class="trading-product__column trading-product__column--market">
           <div class="trading-product__title-container">
               <p class="trading-product__title"><%= @data.fetch(:current_market).fetch(:ask_unit).upcase %> </p>
               <i class="icon icon-exchange trading-product__icon-exchange"></i>
@@ -58,30 +27,24 @@
             </p>
             <div id="trading-asset-info-id" class="trading-dropdown form__body">
               <div class="trading-dropdown__backround"></div>
-              <div class="trading-dropdown__main-block" style="background: var(--tableHeaderColor)" id="mybtnsContainer">
-                  <button class="btns active" onclick="filterSelection('all')"> All</button>
-                  <button class="btns" onclick="filterSelection('inr')"> inr</button>
-                  <button class="btns" onclick="filterSelection('btc')"> btc</button>
-                  <button class="btns" onclick="filterSelection('eth')"> eth</button>
-                  <button class="btns" onclick="filterSelection('xrp')"> xrp</button>
-                  <button class="btns" onclick="filterSelection('usd')"> usd</button>
-              </div>
               <div class="trading-dropdown__main-block">
                 <div class="form__column-container">
-                  <div class="form__column trading-dropdown__column">Pairs</div>
+                  <div class="form__column trading-dropdown__column">Asset</div>
                   <div class="form__column trading-dropdown__column">Last Price</div>
                   <div class="form__column trading-dropdown__column">Change</div>
                 </div>
                 <div class="trading-dropdown__form-container">
                   <% @data.fetch(:markets).each do |market| %>
-                      <div class="form__column-container form__column-container-value trading-dropdown__row <%=market.fetch(:id).to_s %>">
+                      <div class="form__column-container form__column-container-value trading-dropdown__row">
                           <div class="form__column trading-dropdown__column trading-dropdown__column-value form__column-value">
                               <%= link_to market.fetch(:name), '/trading/' + market.fetch(:id).to_s %>
                           </div>
                           <div class="form__column trading-dropdown__column trading-dropdown__column-value form__column-value">
                               <%= market.fetch(:ticker).fetch(:last) %>
                           </div>
-                          <div class="form__column trading-dropdown__column trading-dropdown__column-value form__column-value change"> | +0.00% </div>
+                          <div class="form__column trading-dropdown__column trading-dropdown__column-value form__column-value change">
+                              | Loading...
+                          </div>
                       </div>
                   <% end %>
                   
@@ -136,11 +99,10 @@
 
     <!--Chart component-->
     <%= render partial: 'candlestick' %>
+    
     <!--End Of chart component-->
 
-
     <!--Order list-->
-    <%= render partial: 'depths' %>
     <%= render partial: 'market_trades' %>
     <!--End Of Order list-->
   </div>
@@ -148,16 +110,17 @@
     <!--Order book-->
     <%= render partial: 'order_book' %>
     <!--End Of Order book-->
-  <div class="buy-sell__settings-row"></div>
     <!--Buy Sell-->
     <div class="form exchange__buy-sell">
       <div class="form__header">
         <div class="select-menu-container">
           <div class="select-menu">
-            <div id="buy-button" style="text-align: center" class="select-menu__items input-block--half select-menu__item--active" onclick="selectDropdownItem('buy-sell',this)">Buy</div>
-            <div style="text-align: center" class="select-menu__items input-block--half" onclick="selectDropdownItem('buy-sell', this)">Sell</div>
+            <div id="buy-button" class="select-menu__item select-menu__item--active" onclick="selectDropdownItem('buy-sell',this)">Buy</div>
+            <div class="select-menu__item" onclick="selectDropdownItem('buy-sell', this)">Sell</div>
           </div>
         </div>
+      </div>
+      <div class="buy-sell__settings-row">
       </div>
       <%= render partial: 'ask_entry', locals: { market: @data.fetch(:current_market) } %>
       <%= render partial: 'bid_entry', locals: { market: @data.fetch(:current_market) } %>
@@ -167,47 +130,3 @@
     <!--End of Buy Sell-->
   </div>
 </div>
-<script>
-filterSelection("all")
-function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("trading-dropdown__row");
-  if (c == "all") c = "";
-  for (i = 0; i < x.length; i++) {
-    w3RemoveClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-  }
-}
-
-function w3AddClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-  }
-}
-
-function w3RemoveClass(element, name) {
-  var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
-  for (i = 0; i < arr2.length; i++) {
-    while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);     
-    }
-  }
-  element.className = arr1.join(" ");
-}
-
-// Add active class to the current button (highlight it)
-var btnsContainer = document.getElementById("mybtnsContainer");
-var btnss = btnsContainer.getElementsByClassName("btns");
-for (var i = 0; i < btnss.length; i++) {
-  btnss[i].addEventListener("click", function(){
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}
-</script>
