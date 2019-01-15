@@ -19,15 +19,3 @@
 # To do: 
 ## `Tradingview integration`
 
-
-# This is What you will get:
-- Mobile View
-`Click on Image to Enlarge`
-![N|Solid](https://adarshd711.github.io/1.png)
-![N|Solid](https://adarshd711.github.io/2.png)
-![N|Solid](https://adarshd711.github.io/3.png)
- - Desktop View
-`Click on Image to Enlarge`
-![N|Solid](https://adarshd711.github.io/4.png)
-`Click on Image to Enlarge`
-![N|Solid](https://adarshd711.github.io/5.png)
