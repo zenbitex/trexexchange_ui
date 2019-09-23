@@ -60,10 +60,9 @@
               <div class="trading-dropdown__backround"></div>
               <div class="trading-dropdown__main-block" style="background: var(--tableHeaderColor)" id="mybtnsContainer">
                   <button class="btns active" onclick="filterSelection('all')"> All</button>
-                  <button class="btns" onclick="filterSelection('inr')"> inr</button>
                   <button class="btns" onclick="filterSelection('btc')"> btc</button>
                   <button class="btns" onclick="filterSelection('eth')"> eth</button>
-                  <button class="btns" onclick="filterSelection('xrp')"> xrp</button>
+                  <button class="btns" onclick="filterSelection('dxc')"> btx</button>
                   <button class="btns" onclick="filterSelection('usd')"> usd</button>
               </div>
               <div class="trading-dropdown__main-block">
@@ -81,7 +80,7 @@
                           <div class="form__column trading-dropdown__column trading-dropdown__column-value form__column-value">
                               <%= market.fetch(:ticker).fetch(:last) %>
                           </div>
-                          <div class="form__column trading-dropdown__column trading-dropdown__column-value form__column-value change"> | +0.00% </div>
+                          <div class="form__column trading-dropdown__column trading-dropdown__column-value form__column-value"> <%= market.fetch(:ticker).fetch(:price_change_percent) %></div>
                       </div>
                   <% end %>
                   
@@ -108,7 +107,7 @@
           <div class="trading-product__title-container">
               <% @data.fetch(:markets).each do |market| %>
                   <% if market.fetch(:id) == @data.fetch(:current_market).fetch(:id) %>
-                  <p class="trading-product__title red-after change">0.00%</p>
+                  <p class="trading-product__title"> <%= market.fetch(:ticker).fetch(:price_change_percent) %></p>
                   <% break %>
                   <% end %>
               <% end %>
