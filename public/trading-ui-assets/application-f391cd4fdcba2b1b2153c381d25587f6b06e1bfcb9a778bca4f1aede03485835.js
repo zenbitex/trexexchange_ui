@@ -23814,7 +23814,7 @@ discardElement:Va,css:K,each:p,extend:s,map:za,merge:y,pick:q,splat:qa,extendCla
       symbol = gon.currencies[gon.market.bid_unit].symbol;
       price = data.last;
       market = [gon.market.ask_unit, gon.market.bid_unit].join("/").toUpperCase();
-      title = 'Vertlite Exchange';
+      title = 'Trex Exchange';
       return document.title = price + " " + market + " – " + title;
     };
     this.refreshDepth = function(data) {
