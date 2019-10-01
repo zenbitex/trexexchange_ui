@@ -14,3 +14,4 @@
 .byebug_history
 .idea
 /config/application.yml
+/public/trading-ui-assets
